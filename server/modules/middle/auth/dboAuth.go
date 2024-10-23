@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"sever/modules/middle/low/database"
+	"sever/modules/low/database"
 	"time"
 )
 

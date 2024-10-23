@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"sever/modules/low/database"
 	"sever/modules/middle/auth"
-	"sever/modules/middle/low/database"
+
 	"time"
 
 	"github.com/rotisserie/eris"
