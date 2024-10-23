@@ -1,0 +1,11 @@
+{
+    "logins:":{
+        "main": {
+            "login":"database_login",
+            "password": "database_password"
+        }
+    },
+    "server_type":"sqlserver://",
+    "server_addres":"@localhost:1433?database=database_name"
+    
+}
