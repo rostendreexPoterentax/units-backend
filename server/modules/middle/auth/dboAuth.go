@@ -23,11 +23,11 @@ func AddUser(user *DboUser) (int, error) {
 	return user.Id, nil
 }
 
-func GetUser(id int) (*DboUser, error) {
+func GetUser(email string) (*DboUser, error) {
 	var user DboUser
-	res := database.Db.Table("dbo.user").Find(&user, id)
+	res := database.Db.Table("dbo.user").Find(&user, email)
 	if res.Error != nil {
-		return nil, eris.Wrapf(res.Error, "fauled to load user from database by id: %v", id)
+		return nil, eris.Wrapf(res.Error, "fauled to load user from database by email: %v", email)
 	}
 	return &user, nil
 }

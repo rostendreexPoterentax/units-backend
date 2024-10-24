@@ -25,4 +25,9 @@ func ApiRegisterUser(w http.ResponseWriter, r *http.Request) {
 	data := map[string]int{"id": newUserId}
 
 	er = utils.SendResponse(w, 200, data, "Аккаунт успешно зарегестрирован")
+	if er != nil {
+		badData := map[string]int{"id": -1}
+		utils.SendResponse(w, 400, badData, "Произошла ошибка. Попробуйте позже.")
+		return
+	}
 }
