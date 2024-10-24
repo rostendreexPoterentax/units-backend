@@ -16,7 +16,7 @@ import (
 func handler(w http.ResponseWriter, r *http.Request) {
 	id, er := auth.AddUser(&auth.DboUser{
 		Name:           "Vladimir",
-		Password:       "6811935566",
+		Password:       "pass"
 		Email:          "Poterentax93@gmail.com",
 		CreationMoment: time.Now().UTC(),
 	})
