@@ -6,7 +6,7 @@ import (
 	"sever/modules/low/utils"
 )
 
-func ApiRegisterUser(w http.ResponseWriter, r http.Request) {
+func ApiRegisterUser(w http.ResponseWriter, r *http.Request) {
 	var req *DtoRegister
 
 	er := json.NewDecoder(r.Body).Decode(req)

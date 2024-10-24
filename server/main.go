@@ -8,22 +8,10 @@ import (
 	"sever/modules/low/database"
 	"sever/modules/middle/auth"
 
-	"time"
-
 	"github.com/rotisserie/eris"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	id, er := auth.AddUser(&auth.DboUser{
-		Name:           "Vladimir",
-		Password:       "pass"
-		Email:          "Poterentax93@gmail.com",
-		CreationMoment: time.Now().UTC(),
-	})
-	if er != nil {
-		eris.Wrap(er, "failed to create first test user")
-	}
-	fmt.Printf("%v", id)
 	fmt.Print("\nserver handler started")
 }
 
@@ -32,8 +20,9 @@ func main() {
 	if er != nil {
 		log.Fatalf("Database not connected\nError:\n %v", eris.ToString(er, true))
 	}
-
-	http.HandleFunc("/", handler)
+	log.Print("Registration routes...")
+	handlersInit()
+	log.Print("Routers is registred")
 	fmt.Print("server started:\nhttp://localhost:4000")
 	er = http.ListenAndServe(":4000", nil)
 	if er != nil {
@@ -41,4 +30,9 @@ func main() {
 			eris.Wrap(er, "failed to start http.Listen"))
 	}
 
+}
+
+func handlersInit() {
+	http.HandleFunc("/", handler)
+	http.HandleFunc("/api_user_registration", auth.ApiRegisterUser)
 }
