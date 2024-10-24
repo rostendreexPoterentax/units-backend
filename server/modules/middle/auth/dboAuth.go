@@ -3,6 +3,8 @@ package auth
 import (
 	"sever/modules/low/database"
 	"time"
+
+	"github.com/rotisserie/eris"
 )
 
 type DboUser struct {
@@ -19,4 +21,13 @@ func AddUser(user *DboUser) (int, error) {
 		return -1, res.Error
 	}
 	return user.Id, nil
+}
+
+func GetUser(id int) (*DboUser, error) {
+	var user DboUser
+	res := database.Db.Table("dbo.user").Find(&user, id)
+	if res.Error != nil {
+		return nil, eris.Wrapf(res.Error, "fauled to load user from database by id: %v", id)
+	}
+	return &user, nil
 }
